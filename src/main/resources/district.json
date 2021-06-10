@@ -1,0 +1,27 @@
+[
+
+  {
+    "nameDistrict" : "Americana",
+    "squareMeterValue" : 80
+  },
+  {
+    "nameDistrict" : "Osasco",
+    "squareMeterValue" : 30
+  },
+  {
+    "nameDistrict" : "Campinas",
+    "squareMeterValue" : 40
+  },
+  {
+    "nameDistrict" : "Sorocaba",
+    "squareMeterValue" : 50
+  },
+  {
+    "nameDistrict" : "São paulo",
+    "squareMeterValue" : 54
+  },
+  {
+    "nameDistrict" : "Cerquilho",
+    "squareMeterValue" : 39
+  }
+]
