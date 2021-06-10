@@ -1,0 +1,30 @@
+[
+  {
+    "nameDistrict" : "Parque São Domingos",
+    "squareMeterValue" : 100
+  },
+  {
+    "nameDistrict" : "Parque Maria Domitila",
+    "squareMeterValue" : 100
+  },
+  {
+    "nameDistrict" : "City América",
+    "squareMeterValue" : 100
+  },
+  {
+    "nameDistrict" : "Mangalot",
+    "squareMeterValue" : 100
+  },
+  {
+    "nameDistrict" : "Jaragua",
+    "squareMeterValue" : 100
+  },
+  {
+    "nameDistrict" : "City Pinheirinho",
+    "squareMeterValue" : 100
+  },
+  {
+    "nameDistrict" : "Morro Doce",
+    "squareMeterValue" : 100
+  }
+]
