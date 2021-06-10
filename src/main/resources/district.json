@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Santa Catarina",
+    "price": 89.90
+  },
+  {
+    "name": "Santa Clara",
+    "price": 109.00
+  },
+  {
+    "name": "Centro",
+    "price": 149.90
+  },
+  {
+    "name": "Rio Bonito",
+    "price": 56.90
+  },
+  {
+    "name": "Vila das Flores",
+    "price": 150.00
+  },
+  {
+    "name": "Vila Formosa",
+    "price": 150.00
+  },
+  {
+    "name": "Imigrantes",
+    "price": 230.00
+  },
+  {
+    "name": "Jussara",
+    "price": 53.00
+  },
+  {
+    "name": "Murialdo",
+    "price": 34.00
+  },
+  {
+    "name": "Bagatini",
+    "price": 139.00
+  },
+  {
+    "name": "Bela Vista",
+    "price": 179.90
+  }
+]
