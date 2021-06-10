@@ -1,0 +1,8 @@
+info:
+  app:
+    name: "bootcamp-challenge-test"
+    description: "A empresa Sua Avaliação de Casas precisa ser capaz de calcular os metros quadrados e o custo dos diferentes imóveis que possui em sua carteira de clientes."
+    version: v0.0.1
+
+server:
+  port: 4200

@@ -56,6 +56,11 @@
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -76,22 +81,7 @@
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
-<!--					<execution>-->
-<!--						<id>default-report</id>-->
-<!--						<phase>prepare-package</phase>-->
-<!--						<goals>-->
-<!--							<goal>report</goal>-->
-<!--						</goals>-->
-<!--					</execution>-->
-<!--					<execution>-->
-<!--						<id>pre-unit-test</id>-->
-<!--						<goals>-->
-<!--							<goal>prepare-agent</goal>-->
-<!--						</goals>-->
-<!--					</execution>-->
 					<execution>
-<!--						<id>post-unit-test</id>-->
-<!--						<phase>test</phase>-->
 						<goals>
 							<goal>report</goal>
 						</goals>
