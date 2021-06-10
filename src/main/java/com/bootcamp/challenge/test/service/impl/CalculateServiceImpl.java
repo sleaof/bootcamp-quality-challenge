@@ -1,26 +1,26 @@
 package com.bootcamp.challenge.test.service.impl;
 
-import com.bootcamp.challenge.test.dto.HouseDTO;
-import com.bootcamp.challenge.test.dto.HouseResponseDTO;
-import com.bootcamp.challenge.test.dto.RoomDTO;
+import com.bootcamp.challenge.test.model.House;
+import com.bootcamp.challenge.test.response.HouseResponse;
+import com.bootcamp.challenge.test.model.Room;
 import com.bootcamp.challenge.test.service.CalculateService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CalculateServiceImpl implements CalculateService {
 
-    public HouseResponseDTO calculate(HouseDTO house) {
-        HouseResponseDTO response = new HouseResponseDTO(house);
+    public HouseResponse calculate(House house) {
+        HouseResponse response = new HouseResponse(house);
         calculateRoomSquareFeet(house, response);
         response.setPrice(calculatePrice(response.getSquareFeet()));
         return response;
     }
 
-    private void calculateRoomSquareFeet(HouseDTO house, HouseResponseDTO response) {
+    public void calculateRoomSquareFeet(House house, HouseResponse response) {
         Integer totalSquareFeet = 0;
-        RoomDTO biggest = null;
+        Room biggest = null;
         Integer maxRoom = 0;
-        for (RoomDTO room : house.getRooms()) {
+        for (Room room : house.getRooms()) {
             Integer squareFeet = getSquareFeet(room);
             totalSquareFeet += squareFeet;
             if (biggest == null || squareFeet > maxRoom){
@@ -32,14 +32,14 @@ public class CalculateServiceImpl implements CalculateService {
         response.setBiggest(biggest);
     }
 
-    private int calculatePrice(Integer result) {
+    public int calculatePrice(Integer result) {
         return result * 800;
     }
 
-    public Integer getSquareFeet(RoomDTO roomDTO) {
+    public Integer getSquareFeet(Room room) {
         Integer result = 0;
-        if(roomDTO.getWidth() != null && roomDTO.getLength() != null)
-            result = roomDTO.getWidth() * roomDTO.getLength();
+        if(room.getRoomWidth() != null && room.getRoomLength() != null)
+            result = room.getRoomWidth() * room.getRoomLength();
         return result;
     }
 }

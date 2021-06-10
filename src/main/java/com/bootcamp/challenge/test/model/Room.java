@@ -1,4 +1,4 @@
-package com.bootcamp.challenge.test.dto;
+package com.bootcamp.challenge.test.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomDTO {
+public class Room {
 
     @NotNull(message = "O campo não pode estar vazio.")
     @Pattern(regexp="([A-Z|À-Ú]){1}[ a-z|à-ú]*", message = "O nome do cômodo deve começar com uma letra maiúscula.")

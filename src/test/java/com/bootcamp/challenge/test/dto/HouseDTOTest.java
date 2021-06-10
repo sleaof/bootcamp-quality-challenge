@@ -1,5 +1,7 @@
 package com.bootcamp.challenge.test.dto;
 
+import com.bootcamp.challenge.test.model.House;
+import com.bootcamp.challenge.test.model.Room;
 import org.junit.Assert;
 import org.junit.Test;
 import java.util.ArrayList;
@@ -20,15 +22,15 @@ public class HouseDTOTest {
 //        houseDTO.setAddress(null);
 //    }
 
-    public HouseDTO mockHouseDTO(){
-        HouseDTO houseDTO = new HouseDTO();
-        houseDTO.setPropName("Casa Amarela");
-        houseDTO.setPropDistrict("Granja Viana");
-        List<RoomDTO> rooms = new ArrayList<>();
-        rooms.add(new RoomDTO("sala", 13, 5));
-        rooms.add(new RoomDTO("quarto", 6, 5));
-        houseDTO.setRooms(rooms);
-        return houseDTO;
+    public House mockHouseDTO(){
+        House house = new House();
+        house.setPropName("Casa Amarela");
+        house.setPropDistrict("Granja Viana");
+        List<Room> rooms = new ArrayList<>();
+        rooms.add(new Room("sala", 13, 5));
+        rooms.add(new Room("quarto", 6, 5));
+        house.setRooms(rooms);
+        return house;
     }
 
 }

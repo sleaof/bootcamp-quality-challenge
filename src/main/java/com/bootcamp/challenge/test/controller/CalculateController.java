@@ -1,7 +1,7 @@
 package com.bootcamp.challenge.test.controller;
 
-import com.bootcamp.challenge.test.dto.HouseDTO;
-import com.bootcamp.challenge.test.dto.HouseResponseDTO;
+import com.bootcamp.challenge.test.model.House;
+import com.bootcamp.challenge.test.response.HouseResponse;
 import com.bootcamp.challenge.test.service.CalculateService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +17,7 @@ public class CalculateController {
     CalculateService calculateService;
 
     @PostMapping("/calculate")
-    public HouseResponseDTO calculate(@RequestBody @Valid HouseDTO house){
+    public HouseResponse calculate(@RequestBody @Valid House house){
         return calculateService.calculate(house);
     }
 }

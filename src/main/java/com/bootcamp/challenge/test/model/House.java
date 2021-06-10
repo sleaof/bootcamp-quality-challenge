@@ -1,4 +1,4 @@
-package com.bootcamp.challenge.test.dto;
+package com.bootcamp.challenge.test.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class HouseDTO {
+public class House {
 
     @NotNull(message = "O nome da propriedade não pode estar vazio.")
     @Pattern(regexp="([A-Z|À-Ú]){1}[ a-z|à-ú]*", message = "O nome da propriedade deve começar com uma letra maiúscula.")
@@ -24,7 +24,7 @@ public class HouseDTO {
     @Max(value = 45, message = "O comprimento do bairro não pode exceder 45 caracteres.")
     private String propDistrict;
 
-    @NotEmpty
-    private List<RoomDTO> rooms;
+    @NotEmpty(message = "A lista de comodos nao pode estar vazia.")
+    private List<Room> rooms;
 
 }
