@@ -42,4 +42,17 @@ public class PropertiesMethodTests {
         //AssertEquals
         Assert.assertEquals(expected,propertieSquareMeters);
     }
+
+    @Test
+    void testAnalyzePropertieSquareMetersAssertNotEquals(){
+        //arange
+        Double expected = 35.00;
+
+        //act
+        Double propertieSquareMeters = propertieService.propertieSquareMeters(propertiesDTO);
+
+        //AssertEquals
+        Assert.assertNotEquals(expected, propertieSquareMeters);
+
+    }
 }

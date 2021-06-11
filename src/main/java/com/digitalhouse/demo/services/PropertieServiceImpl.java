@@ -39,6 +39,14 @@ public class PropertieServiceImpl implements PropertieService{
     }
 
     @Override
+    public Double propertiesValue(PropertieDTO dto) {
+        String nameDistrict = dto.getPropDistrict();
+        DistrictDTO districtDTO = districtRepository.findByName(nameDistrict);
+
+        return propertieSquareMeters(dto) * districtDTO.getSquareMeterValue();
+    }
+
+    @Override
     public RoomDTO getBiggestRoom(PropertieDTO dto) {
         RoomDTO room = new RoomDTO();
         Double roomSquareMeters = 0.0;
