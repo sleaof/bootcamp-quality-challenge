@@ -27,4 +27,12 @@ public class DistrictDTO {
     public void setSquareMeterValue(Double squareMeterValue) {
         this.squareMeterValue = squareMeterValue;
     }
+
+    @Override
+    public String toString() {
+        return "DistrictDTO{" +
+                "nameDistrict='" + nameDistrict + '\'' +
+                ", squareMeterValue=" + squareMeterValue +
+                '}';
+    }
 }

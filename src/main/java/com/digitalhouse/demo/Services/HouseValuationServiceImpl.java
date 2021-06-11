@@ -1,70 +1,97 @@
 package com.digitalhouse.demo.Services;
 
 
+import com.digitalhouse.demo.DTOs.DistrictDTO;
+import com.digitalhouse.demo.DTOs.HomeDTO;
 import com.digitalhouse.demo.DTOs.PropertsDTO;
+import com.digitalhouse.demo.DTOs.RoomDTO;
+import com.digitalhouse.demo.Repository.DisctrictRepository;
 import com.digitalhouse.demo.Repository.DisctrictRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-
+import javax.swing.text.StyledEditorKit;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Service
 public class HouseValuationServiceImpl implements HouseValuationService {
 
     @Autowired
-    public DisctrictRepositoryImpl disctrictRepository;
+    public DisctrictRepository disctrictRepository;
 
-    PropertsDTO propertsDTO;
+
+    @Override
+    public HomeDTO home(PropertsDTO propertsDTO) {
+        HomeDTO homeDTO = new HomeDTO();
+        homeDTO.setPropertyValue(propertyValue(propertsDTO));
+        homeDTO.setBiggestRoom(biggestRoom(propertsDTO));
+        homeDTO.setTotalSquareMeters(totalSquareMeters(propertsDTO));
+        homeDTO.setSquareMetersPerRoom(squareMetersPerRoom(propertsDTO));
+        return homeDTO;
+    }
+
 
     //Total de metros quadrados
-    private Double totalSquareMeters() {
+    public Double totalSquareMeters(PropertsDTO propertsDTO) {
 
-        Double cAux1 = null;
-        //metros quadrados da casa
+        Double cAux1 = 1.0;
         for (int i = 0; i < propertsDTO.getRoom().size(); i++) {
             cAux1 += propertsDTO.getRoom().get(i).getRoom_length() * propertsDTO.getRoom().get(i).getRoom_width();
         }
+
         return cAux1;
     }
 
     //Valor da propriedade
-    private Double propertyValue() {
-        prope
-        Double valueDistrict = disctrictRepository.loadDB().stream()
-                .filter(districtDTO -> districtDTO.getNameDistrict().equals(district))
-                .mapToDouble(districtDTO -> districtDTO.getSquareMeterValue())
-                .average()
-                .getAsDouble();
+    public Object propertyValue(PropertsDTO propertsDTO) {
 
-        Double propertyValue = totalSquareMeters() * valueDistrict;
+//        Double valueDistrict = disctrictRepository.loadDB()
+//                .stream().filter(x -> x.getNameDistrict().contentEquals(propertsDTO.getProp_name()))
+//                .findFirst().get().getSquareMeterValue();
+
+        Double valueDistrict = 0.0;
+        int sizeDistrict = disctrictRepository.loadDB().size();
+        for (int i = 0; i < sizeDistrict; i++){
+        Boolean findDistrict = disctrictRepository.loadDB().get(i)
+                .getNameDistrict().toLowerCase(Locale.ROOT)
+               .equals(propertsDTO.getProp_district()
+                        .toLowerCase(Locale.ROOT));
+            if (findDistrict == true){
+            valueDistrict = disctrictRepository.loadDB().get(i).getSquareMeterValue();
+        }
+
+        }
+        Double propertyValue = totalSquareMeters(propertsDTO) * valueDistrict;
+
         return propertyValue;
     }
 
     //Maior comodo
-    private HashMap<String, Double> biggestRoom() {
-        return squareMetersPerRoom().stream().max(Comparator.comparing(String::valueOf)).get();
+    public Optional<Map.Entry<String, Double>> biggestRoom(PropertsDTO propertsDTO) {
+       HashMap<String, Double> biggest = new HashMap<>();
+//        Double value = Collections.max (squareMetersPerRoom(propertsDTO).values());
+//        String name = squareMetersPerRoom(propertsDTO).entrySet();
+
+        return squareMetersPerRoom(propertsDTO).entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+                .findFirst();
     }
 
     //Metros quadrados por comodo
-    private List<HashMap<String, Double>> squareMetersPerRoom() {
-        String cAux2 = "";
-        List<HashMap<String, Double>> squareMetersPerRoom = new ArrayList<>();
+    public HashMap<String, Double> squareMetersPerRoom(PropertsDTO propertsDTO) {
+
+        HashMap<String, Double> metersandRoom = new HashMap<>(); ;
         for (int i = 0; i < propertsDTO.getRoom().size(); i++) {
-            HashMap<String, Double> metersandRoom = new HashMap<>();
-            cAux2 = propertsDTO.getRoom().get(i).getRoom_name();
-            metersandRoom.put(cAux2, totalSquareMeters());
-            squareMetersPerRoom.add(metersandRoom);
+            String  cAux2 = propertsDTO.getRoom().get(i).getRoom_name();
+            Double aux2 = propertsDTO.getRoom().get(i).getRoom_length() * propertsDTO.getRoom().get(i).getRoom_width();
+            metersandRoom.put(cAux2, aux2);
         }
-        return squareMetersPerRoom;
+        System.out.println(metersandRoom);
+        return metersandRoom;
     }
 
-    @Override
-    public PropertsDTO home(PropertsDTO propertsDTO) {
-        return propertsDTO;
-    }
 }

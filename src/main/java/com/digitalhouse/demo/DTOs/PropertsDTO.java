@@ -39,6 +39,9 @@ public class PropertsDTO {
     }
 
     public PropertsDTO(PropertsDTO properts) {
+        this.prop_name = properts.getProp_name();
+        this.prop_district = properts.getProp_district();
+        this.room = properts.getRoom();
     }
 
     public String getProp_name() {
@@ -63,6 +66,15 @@ public class PropertsDTO {
 
     public void setRoom(List<RoomDTO> room) {
         this.room = room;
+    }
+
+    @Override
+    public String toString() {
+        return "PropertsDTO{" +
+                "prop_name='" + prop_name + '\'' +
+                ", prop_district='" + prop_district + '\'' +
+                ", room=" + room +
+                '}';
     }
 
     @Override

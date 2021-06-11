@@ -58,6 +58,15 @@ public class RoomDTO {
     }
 
     @Override
+    public String toString() {
+        return "RoomDTO{" +
+                "room_name='" + room_name + '\'' +
+                ", room_width=" + room_width +
+                ", room_length=" + room_length +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
