@@ -16,7 +16,7 @@ import java.util.Objects;
 public class PropertsDTO {
 
     @NotNull(message = "O nome da propriedade não pode ser vazio.")
-    @Pattern(regexp = "([A-Z|À-Ú]){1}[ a-z|à-ú]*", message = "O nome da propriedade deve começar com uma letra maiúscula.")
+    @Pattern(regexp = "[A-ZÀ-Ú ][A-ZÀ-Ú a-zà-ú ]+$",message = "O nome da propriedade deve comecar com letra maiuscula")
     @Size(min = 1, max = 30, message = "O comprimento do nome não pode exceder 30 caracteres.")
     private String prop_name;
 

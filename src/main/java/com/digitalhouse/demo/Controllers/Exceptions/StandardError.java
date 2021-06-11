@@ -1,8 +1,10 @@
 package com.digitalhouse.demo.Controllers.Exceptions;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.Instant;
 
+@XmlRootElement(name = "error")
 public class StandardError implements Serializable {
 
     private Instant timestamp;

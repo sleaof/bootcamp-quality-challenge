@@ -1,16 +1,21 @@
 package com.digitalhouse.demo.Services;
 
 
+import com.digitalhouse.demo.Controllers.Exceptions.StandardError;
 import com.digitalhouse.demo.DTOs.DistrictDTO;
 import com.digitalhouse.demo.DTOs.HomeDTO;
 import com.digitalhouse.demo.DTOs.PropertsDTO;
 import com.digitalhouse.demo.DTOs.RoomDTO;
 import com.digitalhouse.demo.Repository.DisctrictRepository;
 import com.digitalhouse.demo.Repository.DisctrictRepositoryImpl;
+import com.digitalhouse.demo.Services.Exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.StyledEditorKit;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -61,7 +66,10 @@ public class HouseValuationServiceImpl implements HouseValuationService {
                         .toLowerCase(Locale.ROOT));
             if (findDistrict == true){
             valueDistrict = disctrictRepository.loadDB().get(i).getSquareMeterValue();
-        }
+        }if (valueDistrict == 0.0){
+                EntityNotFoundException e = new EntityNotFoundException("Voce retornou uma Destrito que não existe");
+
+            }
 
         }
         Double propertyValue = totalSquareMeters(propertsDTO) * valueDistrict;
@@ -72,9 +80,6 @@ public class HouseValuationServiceImpl implements HouseValuationService {
     //Maior comodo
     public Optional<Map.Entry<String, Double>> biggestRoom(PropertsDTO propertsDTO) {
        HashMap<String, Double> biggest = new HashMap<>();
-//        Double value = Collections.max (squareMetersPerRoom(propertsDTO).values());
-//        String name = squareMetersPerRoom(propertsDTO).entrySet();
-
         return squareMetersPerRoom(propertsDTO).entrySet()
                 .stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().reversed())

@@ -12,7 +12,7 @@ import java.util.Objects;
 public class RoomDTO {
 
     @NotNull(message = "O nome não pode ser vazio.")
-    @Pattern(regexp = "([A-Z|À-Ú]){1}[ a-z|à-ú]*", message = "O nome do cômodo deve começar com uma letra maiúscula.")
+    @Pattern(regexp = "[A-ZÀ-Ú ][A-ZÀ-Ú a-zà-ú ]+$", message = "O nome do comodo deve comecar com letra maiuscula")
     @Size( max = 30, message = "O comprimento do cômodo não pode exceder 30 caracteres.")
     private String room_name;
 
