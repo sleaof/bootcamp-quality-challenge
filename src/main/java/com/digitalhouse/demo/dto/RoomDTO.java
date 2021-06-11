@@ -23,9 +23,20 @@ public class RoomDTO {
     @Range(min = 0, max = 33, message = "O comprimento máximo permitido por cômodo é de 33 metros.")
     private Double roomLength;
 
+    public RoomDTO() {
+    }
+
+    public RoomDTO(String roomName, Double roomWidth, Double roomLength) {
+        this.roomName = roomName;
+        this.roomWidth = roomWidth;
+        this.roomLength = roomLength;
+    }
+
     public String getRoomName() {
         return roomName;
     }
+
+
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
@@ -48,12 +59,4 @@ public class RoomDTO {
     }
 
 
-    @Override
-    public String toString() {
-        return "RoomDTO{" +
-                "roomName='" + roomName + '\'' +
-                ", roomWidth=" + roomWidth +
-                ", roomLength=" + roomLength +
-                '}';
-    }
 }

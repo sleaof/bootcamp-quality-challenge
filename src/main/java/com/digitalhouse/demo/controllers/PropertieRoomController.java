@@ -3,9 +3,7 @@ package com.digitalhouse.demo.controllers;
 import com.digitalhouse.demo.dto.DistrictDTO;
 import com.digitalhouse.demo.dto.PropertieDTO;
 import com.digitalhouse.demo.repositories.DistrictRepository;
-import com.digitalhouse.demo.services.DistrictService;
 import com.digitalhouse.demo.services.PropertieService;
-import com.digitalhouse.demo.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +19,6 @@ import java.util.List;
 @RestController
 public class PropertieRoomController {
 
-    @Autowired
-    RoomService roomService;
-
-    @Autowired
-    DistrictService districtService;
 
     @Autowired
     PropertieService propertieService;
@@ -42,29 +35,29 @@ public class PropertieRoomController {
      */
 
     @PostMapping("/calculates")
-    public ResponseEntity<Object> returnReponseTest(@RequestBody @Valid PropertieDTO propertieDTO){
-        return new ResponseEntity<>(roomService.propertieSquareMeters(propertieDTO), HttpStatus.CREATED);
+    public ResponseEntity<Object> getPropertieSquareMethod(@RequestBody @Valid PropertieDTO propertieDTO){
+        return new ResponseEntity<>(propertieService.propertieSquareMeters(propertieDTO), HttpStatus.CREATED);
 
     }
 
     @PostMapping("/roomBiggest")
-    public ResponseEntity<Object> returnResponseTest(@RequestBody @Valid PropertieDTO propertieDTO){
-        return  new ResponseEntity<>(roomService.getBiggestRoom(propertieDTO), HttpStatus.OK);
+    public ResponseEntity<Object> getBiggestRoom(@RequestBody @Valid PropertieDTO propertieDTO){
+        return  new ResponseEntity<>(propertieService.getBiggestRoom(propertieDTO), HttpStatus.OK);
     }
 
     @GetMapping("/allDistricts")
-    public ResponseEntity<List<DistrictDTO>> returnAllDist(){
-        return  new ResponseEntity<>(districtService.getAllDistricts(), HttpStatus.OK);
+    public ResponseEntity<List<DistrictDTO>> getAllDist(){
+        return  new ResponseEntity<>(propertieService.getAllDistricts(), HttpStatus.OK);
     }
 
     @PostMapping("/rooms")
-    public ResponseEntity<HashMap<String, Double>> rooms(@RequestBody @Valid PropertieDTO propertieDTO){
+    public ResponseEntity<HashMap<String, Double>> getRoomsSquareMeters(@RequestBody @Valid PropertieDTO propertieDTO){
         return new ResponseEntity<>(propertieService.getRoomsSquareMeters(propertieDTO), HttpStatus.OK);
     }
 
     @PostMapping("/district")
     public ResponseEntity<Object> districtExist(@RequestBody PropertieDTO propertieDTO){
-        return new ResponseEntity<>(districtService.findByName(propertieDTO.getPropDistrict()), HttpStatus.OK);
+        return new ResponseEntity<>(propertieService.findByName(propertieDTO.getPropDistrict()), HttpStatus.OK);
     }
 
 }

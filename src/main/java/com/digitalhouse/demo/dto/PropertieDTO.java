@@ -26,6 +26,15 @@ public class PropertieDTO {
     @Valid
     private List<RoomDTO> rooms;
 
+    public PropertieDTO(){
+    }
+
+    public PropertieDTO(String propName, String propDistrict, List<RoomDTO> rooms) {
+        this.propName = propName;
+        this.propDistrict = propDistrict;
+        this.rooms = rooms;
+    }
+
     public String getPropName() {
         return propName;
     }
