@@ -46,4 +46,14 @@ public class RoomDTO {
     public void setRoomLength(Double roomLength) {
         this.roomLength = roomLength;
     }
+
+
+    @Override
+    public String toString() {
+        return "RoomDTO{" +
+                "roomName='" + roomName + '\'' +
+                ", roomWidth=" + roomWidth +
+                ", roomLength=" + roomLength +
+                '}';
+    }
 }

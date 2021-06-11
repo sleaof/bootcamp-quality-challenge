@@ -5,26 +5,26 @@
   },
   {
     "nameDistrict" : "Parque Maria Domitila",
-    "squareMeterValue" : 100
+    "squareMeterValue" : 50
   },
   {
     "nameDistrict" : "City América",
-    "squareMeterValue" : 100
+    "squareMeterValue" : 200
   },
   {
     "nameDistrict" : "Mangalot",
-    "squareMeterValue" : 100
+    "squareMeterValue" : 70
   },
   {
     "nameDistrict" : "Jaragua",
-    "squareMeterValue" : 100
+    "squareMeterValue" : 40
   },
   {
     "nameDistrict" : "City Pinheirinho",
-    "squareMeterValue" : 100
+    "squareMeterValue" : 150
   },
   {
     "nameDistrict" : "Morro Doce",
-    "squareMeterValue" : 100
+    "squareMeterValue" : 60
   }
 ]

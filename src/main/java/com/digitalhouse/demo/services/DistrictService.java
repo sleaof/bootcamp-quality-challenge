@@ -1,13 +1,13 @@
-package com.digitalhouse.demo.repositories;
+package com.digitalhouse.demo.services;
 
 import com.digitalhouse.demo.dto.DistrictDTO;
 
 import java.util.List;
 
+public interface DistrictService {
 
-public interface DistrictRepository {
+    List<DistrictDTO> getAllDistricts();
 
     DistrictDTO findByName(String query);
 
-    List<DistrictDTO> findAll();
 }
