@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HouseResponse extends House {
 
-    private Integer squareFeet;
+    private Integer totalArea;
     private Integer price;
-    private Room biggest;
+    private Room bigRoom;
 
     public HouseResponse(House house) {
         this.setPropName(house.getPropName());

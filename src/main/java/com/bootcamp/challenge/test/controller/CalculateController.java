@@ -17,7 +17,8 @@ public class CalculateController {
     CalculateService calculateService;
 
     @PostMapping("/calculate")
-    public HouseResponse calculate(@RequestBody @Valid House house){
-        return calculateService.calculate(house);
+    public HouseResponse calculateHouse(@RequestBody @Valid House house){
+        return calculateService.calculateHouse(house);
     }
+
 }

@@ -5,5 +5,5 @@ import com.bootcamp.challenge.test.response.HouseResponse;
 
 public interface CalculateService {
 
-     HouseResponse calculate(House house);
+     HouseResponse calculateHouse(House house);
 }
