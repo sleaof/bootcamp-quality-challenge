@@ -1,24 +1,14 @@
 package com.digitalhouse.demo.Services;
 
 
-import com.digitalhouse.demo.Controllers.Exceptions.StandardError;
-import com.digitalhouse.demo.DTOs.DistrictDTO;
 import com.digitalhouse.demo.DTOs.HomeDTO;
 import com.digitalhouse.demo.DTOs.PropertsDTO;
-import com.digitalhouse.demo.DTOs.RoomDTO;
 import com.digitalhouse.demo.Repository.DisctrictRepository;
-import com.digitalhouse.demo.Repository.DisctrictRepositoryImpl;
 import com.digitalhouse.demo.Services.Exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.StyledEditorKit;
-import java.time.Instant;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 @Service
@@ -26,7 +16,6 @@ public class HouseValuationServiceImpl implements HouseValuationService {
 
     @Autowired
     public DisctrictRepository disctrictRepository;
-
 
     @Override
     public HomeDTO home(PropertsDTO propertsDTO) {
@@ -51,7 +40,7 @@ public class HouseValuationServiceImpl implements HouseValuationService {
     }
 
     //Valor da propriedade
-    public Object propertyValue(PropertsDTO propertsDTO) {
+    public Double propertyValue(PropertsDTO propertsDTO) {
 
 //        Double valueDistrict = disctrictRepository.loadDB()
 //                .stream().filter(x -> x.getNameDistrict().contentEquals(propertsDTO.getProp_name()))
@@ -78,12 +67,12 @@ public class HouseValuationServiceImpl implements HouseValuationService {
     }
 
     //Maior comodo
-    public Optional<Map.Entry<String, Double>> biggestRoom(PropertsDTO propertsDTO) {
+    public Map.Entry<String, Double> biggestRoom(PropertsDTO propertsDTO) {
        HashMap<String, Double> biggest = new HashMap<>();
         return squareMetersPerRoom(propertsDTO).entrySet()
                 .stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
-                .findFirst();
+                .findFirst().get();
     }
 
     //Metros quadrados por comodo
@@ -95,7 +84,6 @@ public class HouseValuationServiceImpl implements HouseValuationService {
             Double aux2 = propertsDTO.getRoom().get(i).getRoom_length() * propertsDTO.getRoom().get(i).getRoom_width();
             metersandRoom.put(cAux2, aux2);
         }
-        System.out.println(metersandRoom);
         return metersandRoom;
     }
 

@@ -6,11 +6,11 @@ import java.util.Optional;
 
 public class HomeDTO {
     private Double totalSquareMeters;
-    private Object propertyValue;
-    private Optional<Map.Entry<String, Double>> biggestRoom;
+    private Double propertyValue;
+    private Map.Entry<String, Double> biggestRoom;
     private HashMap<String, Double>squareMetersPerRoom;
 
-    public HomeDTO(Double totalSquareMeters, Object propertyValue, Optional<Map.Entry<String, Double>> biggestRoom, HashMap<String, Double> squareMetersPerRoom) {
+    public HomeDTO(Double totalSquareMeters, Double propertyValue, Map.Entry<String, Double> biggestRoom, HashMap<String, Double> squareMetersPerRoom) {
         this.totalSquareMeters = totalSquareMeters;
         this.propertyValue = propertyValue;
         this.biggestRoom = biggestRoom;
@@ -29,19 +29,19 @@ public class HomeDTO {
         this.totalSquareMeters = totalSquareMeters;
     }
 
-    public Object getPropertyValue() {
+    public Double getPropertyValue() {
         return propertyValue;
     }
 
-    public void setPropertyValue(Object propertyValue) {
+    public void setPropertyValue(Double propertyValue) {
         this.propertyValue = propertyValue;
     }
 
-    public Optional<Map.Entry<String, Double>> getBiggestRoom() {
+    public Map.Entry<String, Double> getBiggestRoom() {
         return biggestRoom;
     }
 
-    public void setBiggestRoom(Optional<Map.Entry<String, Double>> biggestRoom) {
+    public void setBiggestRoom(Map.Entry<String, Double> biggestRoom) {
         this.biggestRoom = biggestRoom;
     }
 
