@@ -11,18 +11,26 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Repository
 public class DistrictRepositoryImpl implements DistrictRepository {
 
     @Override
-    public List<DistrictDTO> getAll() {
+    public DistrictDTO findByName(String name) {
+        List<DistrictDTO> districts = getAll();
+
+        return districts.stream().filter(district -> district.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new NoSuchElementException("District not found."));
+    }
+
+    @Override
+    public List<DistrictDTO> getAll(){
         File file = null;
 
         try {
             file = ResourceUtils.getFile("classpath:districts.json");
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException("File not found.");
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -33,7 +41,7 @@ public class DistrictRepositoryImpl implements DistrictRepository {
         try {
             districts = objectMapper.readValue(file, typeRef);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to read file.");
         }
 
         return districts;

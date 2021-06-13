@@ -3,6 +3,8 @@ package com.digitalhouse.controllers;
 import com.digitalhouse.dtos.PropertyResponseDTO;
 import com.digitalhouse.entities.Property;
 import com.digitalhouse.services.PropertyService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +21,7 @@ public class PropertyController {
     }
 
     @PostMapping("/calculate")
-    public PropertyResponseDTO analyzeNotes(@RequestBody @Valid Property property){
-        return propertyService.calculateProperty(property);
+    public ResponseEntity<PropertyResponseDTO> analyzeNotes(@RequestBody @Valid Property property){
+        return new ResponseEntity<PropertyResponseDTO>(propertyService.calculateProperty(property), HttpStatus.OK);
     }
 }
