@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -31,6 +32,7 @@ class PropertyControllerUnitTests {
 	@BeforeAll
 	public static void setUp() {
 		List<Room> rooms = new ArrayList<>();
+
 		rooms.add(new Room("Sala", 20.0, 23.0));
 		rooms.add(new Room("Quarto", 15.0, 12.0));
 		rooms.add(new Room("Banheiro", 8.0, 12.0));
@@ -68,7 +70,13 @@ class PropertyControllerUnitTests {
 
 	@Test
 	void SquareMetersPerRoom_ObjectCorrect_Calculate() {
-		//assertEquals(180.0, service.getSquareMetersPerRoom(property).get(new Room("Quarto", 15.0, 12.0)));
+		HashMap<Room, Double> squareMetersPerRoom = new HashMap<>();
+		Room room = new Room("Sala de estar", 12.0, 12.0);
+
+		squareMetersPerRoom = service.getSquareMetersPerRoom(property);
+		squareMetersPerRoom.put(room, room.getRoom_width() * room.getRoom_length());
+
+		assertEquals(144.0, squareMetersPerRoom.get(room));
 
 	}
 
