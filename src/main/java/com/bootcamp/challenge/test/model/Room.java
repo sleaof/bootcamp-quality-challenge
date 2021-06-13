@@ -24,4 +24,6 @@ public class Room {
     @Max(value = 33, message = "O comprimento máximo permitido por cômodo é de 33 metros.")
     private Integer roomLength;
 
+    private Integer areaTotalRoom;
+
 }

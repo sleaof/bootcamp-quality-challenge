@@ -15,6 +15,16 @@ public class GenerateExceptionHandler {
 
     @ExceptionHandler(DistrictNotFoundException.class)
     public ResponseEntity DistrictNotFoundException(DistrictNotFoundException e, WebRequest request){
+        return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ErrorInDistrictsApiException.class)
+    public ResponseEntity ErrorInDistrictsApiException(ErrorInDistrictsApiException e, WebRequest request){
+        return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ErrorInReadDistrictsApiException.class)
+    public ResponseEntity ErrorInReadDistrictsApiException(ErrorInReadDistrictsApiException e, WebRequest request){
         return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
