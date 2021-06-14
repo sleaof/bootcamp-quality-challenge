@@ -1,6 +1,6 @@
 package com.bootcamp.challenge.test.controller;
 
-import com.bootcamp.challenge.test.service.CalculateService;
+import com.bootcamp.challenge.test.service.impl.CalculateServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ class CalculateControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    CalculateService service;
+    CalculateServiceImpl service;
 
     ObjectMapper objectMapper = new ObjectMapper();
 

@@ -1,6 +1,5 @@
 package com.bootcamp.challenge.test.service.impl;
 
-import com.bootcamp.challenge.test.consumer.DistrictsApi;
 import com.bootcamp.challenge.test.exception.DistrictNotFoundException;
 import com.bootcamp.challenge.test.model.District;
 import com.bootcamp.challenge.test.model.House;
@@ -19,11 +18,7 @@ import java.util.List;
 @SpringBootTest
 class CalculateServiceImplTest {
 
-    @Mock
-    private DistrictsApi districtsApi;
-
-    @Mock
-    private DistrictRepositoryImpl repository;
+    DistrictRepositoryImpl repository = new DistrictRepositoryImpl();
 
     @InjectMocks
     CalculateServiceImpl service;
@@ -31,19 +26,16 @@ class CalculateServiceImplTest {
     @Mock
     HouseResponse houseResponse;
 
-//    @Test
-//    void calculateHouse() {
-////        when(repository.findDistrictByName(houseResponse.getPropDistrict())).thenReturn(1);
-//        when(DistrictsApi.listDistricts()).thenReturn(districtList());
-//        HouseResponse houseResponse = service.calculateHouse(mockHouseDTO());
-//        Assert.assertEquals(Integer.valueOf(125), houseResponse.getTotalArea());
-//    }
+    @Test
+    void calculateHouse() {
+        HouseResponse houseResponse = service.calculateHouse(mockHouseDTO());
+        Assert.assertEquals(Integer.valueOf(125), houseResponse.getTotalArea());
+    }
 
     @Test
-    void calculateHouseError() {
-        mockHouseDTO().setPropDistrict("Coti@");
+    public void calculateHouseError() {
         Assert.assertThrows(DistrictNotFoundException.class, ()-> {
-            service.calculateHouse(mockHouseDTO());
+            service.calculateHouse(mockHouseDTOError());
         });
     }
 
@@ -76,11 +68,17 @@ class CalculateServiceImplTest {
         return room;
     }
 
-//    @Test
-//     public void errorTotalArea() {
-//        Room room = new Room("sala", null, 5, 0);
-//       Assert.assertThrows(ValueCannotBeNullException.class, () -> service.totalArea(room));
-//    }
+    public House mockHouseDTOError(){
+        House house = new House();
+        house.setPropName("Casa Amarela");
+        house.setPropDistrict("Coti@");
+        List<Room> rooms = new ArrayList<>();
+        rooms.add(new Room("sala", 13, 5, 65));
+        rooms.add(new Room("quarto", 6, 5, 30));
+        rooms.add(new Room("escritorio", 6, 5, 30));
+        house.setRooms(rooms);
+        return house;
+    }
 
     public House mockHouseDTO(){
         House house = new House();

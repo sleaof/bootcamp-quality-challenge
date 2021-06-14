@@ -6,14 +6,12 @@ import com.bootcamp.challenge.test.model.Room;
 import com.bootcamp.challenge.test.repository.impl.DistrictRepositoryImpl;
 import com.bootcamp.challenge.test.response.HouseResponse;
 import com.bootcamp.challenge.test.service.CalculateService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CalculateServiceImpl implements CalculateService {
 
-    @Autowired
-    private DistrictRepositoryImpl repository;
+    private DistrictRepositoryImpl repository = new DistrictRepositoryImpl();
 
     public HouseResponse calculateHouse(House house) {
         HouseResponse houseResponse = new HouseResponse(house);
