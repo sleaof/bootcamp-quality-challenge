@@ -1,14 +1,13 @@
 package com.bootcamp.challenge.test.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class DistrictInUF {
 
     private List<District> DistrictInUF;

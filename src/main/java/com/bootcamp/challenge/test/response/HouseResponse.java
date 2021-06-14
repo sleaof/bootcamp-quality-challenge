@@ -2,17 +2,17 @@ package com.bootcamp.challenge.test.response;
 
 import com.bootcamp.challenge.test.model.House;
 import com.bootcamp.challenge.test.model.Room;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
+import lombok.*;
+
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class HouseResponse extends House {
 
     private Integer totalArea;
-    private Integer price;
+    private Double price;
     private Room bigRoom;
 
     public HouseResponse(House house) {
