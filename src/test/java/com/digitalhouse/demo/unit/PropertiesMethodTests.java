@@ -1,21 +1,32 @@
 package com.digitalhouse.demo.unit;
 
+import com.digitalhouse.demo.dto.DistrictDTO;
 import com.digitalhouse.demo.dto.PropertieDTO;
 import com.digitalhouse.demo.dto.RoomDTO;
+import com.digitalhouse.demo.repositories.DistrictRepositoryImpl;
+import com.digitalhouse.demo.services.exception.ResourceNotFoundException;
 import org.junit.Assert;
 import com.digitalhouse.demo.services.PropertieServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @SpringBootTest
 public class PropertiesMethodTests {
-    PropertieServiceImpl propertieService = new PropertieServiceImpl();
+
+
+    static DistrictRepositoryImpl districtRepository = new DistrictRepositoryImpl();
+
+    static PropertieServiceImpl propertieService =  new PropertieServiceImpl(districtRepository);
 
     static PropertieDTO propertiesDTO;
+
+
 
     @BeforeAll
     static void init(){
@@ -28,11 +39,12 @@ public class PropertiesMethodTests {
         propertiesDTO.setPropName("Casa Gabriel");
         propertiesDTO.setPropDistrict("Parque São Domingos");
         propertiesDTO.setRooms(rooms);
+
     }
 
     @Test
     void testAnalyzePropertieSquareMetersAssertEquals(){
-        //arange
+        //arrange
         Double expected = 33.00;
         //PropertieDTO propertieDTO = propertiesDTO;
 
@@ -45,7 +57,7 @@ public class PropertiesMethodTests {
 
     @Test
     void testAnalyzePropertieSquareMetersAssertNotEquals(){
-        //arange
+        //arrange
         Double expected = 35.00;
 
         //act
@@ -55,4 +67,112 @@ public class PropertiesMethodTests {
         Assert.assertNotEquals(expected, propertieSquareMeters);
 
     }
+
+   @Test
+    void testAnalyzePropertieTotalValueAssertEquals(){
+        //arrange
+        Double expected = 3300.00;
+
+        //act
+        Double propertieTotalValue = propertieService.propertiesValue(propertiesDTO);
+
+        //assert
+        Assert.assertEquals(expected, propertieTotalValue);
+
+    }
+    @Test
+    void testAnalyzePropertieTotalValueAssertNotEquals(){
+        //arrange
+        Double expected = 3200.00;
+        //DistrictDTO districtDTO = districtRepository.findByName("Parque São Domingos");
+
+        //act
+        Double propertieTotalValue = propertieService.propertiesValue(propertiesDTO);
+
+        //assert
+        Assert.assertEquals(expected, propertieTotalValue);
+
+    }
+
+
+
+
+    @Test
+    void testAnalyzeHasDistrictAseertEquals(){
+        //arrange
+        String expected = "Parque São Domingos";
+        DistrictDTO districtDTO = districtRepository.findByName(expected);
+
+        //act
+        String districtHasRepo = districtDTO.getNameDistrict();
+
+        //assert
+        Assert.assertEquals(expected, districtHasRepo);
+    }
+
+
+
+   @Test
+    void testAnalyzeHasDistrictAseertNotEquals(){
+       String expected = "Parqse São Domingos";
+
+        Assert.assertThrows(ResourceNotFoundException.class, () -> districtRepository.findByName(expected));
+    }
+
+
+
+
+    @Test
+    void testAnalyzeBiggesRoomAssertEquals(){
+        //arrange
+        RoomDTO roomExpected = new RoomDTO("Sala", 3.0,5.0);
+
+        //act
+        RoomDTO roomActual = propertieService.getBiggestRoom(propertiesDTO);
+
+        //assert
+        Assert.assertEquals(roomExpected.getRoomName(), roomActual.getRoomName());
+
+    }
+
+    @Test
+    void testAnalyzeBiggestRoomAssertNotEquals(){
+        //arrange
+        RoomDTO roomExpected = new RoomDTO("Cozinha", 3.0,2.0);
+
+        //act
+        RoomDTO roomActual = propertieService.getBiggestRoom(propertiesDTO);
+
+        //assert
+        Assert.assertNotEquals(roomExpected.getRoomName(), roomActual.getRoomName());
+
+    }
+
+    @Test
+    void testAnalyzeSquareMetersRoomAssertEquals(){
+        //arrange
+        String roomSquarMeterExpected = "Sala";
+        Double squareMetersExpected = 15.00;
+
+        //act
+        HashMap<String, Double> roomsSquareMeters = propertieService.getRoomsSquareMeters(propertiesDTO);
+
+        //assert
+        Assert.assertEquals(squareMetersExpected,roomsSquareMeters.get(roomSquarMeterExpected));
+    }
+
+    @Test
+    void testAnalyzeSquareMetersRoomAssertNotEquals(){
+        //arrange
+        String roomSquarMeterExpected = "Sala";
+        Double squareMetersExpected = 13.00;
+
+        //act
+        HashMap<String, Double> roomsSquareMeters = propertieService.getRoomsSquareMeters(propertiesDTO);
+
+        //assert
+        Assert.assertNotEquals(squareMetersExpected,roomsSquareMeters.get(roomSquarMeterExpected));
+    }
+
+
 }

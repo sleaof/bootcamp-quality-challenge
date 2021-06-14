@@ -26,16 +26,12 @@ public class DistrictRepositoryImpl implements DistrictRepository{
 
     @Override
     public DistrictDTO findByName(String query) {
-        List<DistrictDTO> districts = findAll();
+        //List<DistrictDTO> districts = findAll();
 
-        return districts.stream().filter(district -> district.getNameDistrict().equalsIgnoreCase(query)).findFirst().
+        return database.stream().filter(district -> district.getNameDistrict().equalsIgnoreCase(query)).findFirst().
                 orElseThrow(() -> new ResourceNotFoundException(query));
     }
 
-    //Verifica se há algum arquivo com o nome
-    private boolean matchWith(String query, DistrictDTO districtDTO){
-        return districtDTO.getNameDistrict().contains(query);
-    }
 
     @Override
     public List<DistrictDTO>  findAll() {

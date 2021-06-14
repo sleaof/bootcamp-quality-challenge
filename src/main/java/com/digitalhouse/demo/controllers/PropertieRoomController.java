@@ -60,4 +60,9 @@ public class PropertieRoomController {
         return new ResponseEntity<>(propertieService.findByName(propertieDTO.getPropDistrict()), HttpStatus.OK);
     }
 
+    @PostMapping("/value")
+    public ResponseEntity<Double> totalValue(@RequestBody PropertieDTO propertieDTO){
+        return new ResponseEntity<>(propertieService.propertiesValue(propertieDTO), HttpStatus.OK);
+    }
+
 }

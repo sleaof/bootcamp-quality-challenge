@@ -13,9 +13,21 @@ import java.util.List;
 @Service
 public class PropertieServiceImpl implements PropertieService{
 
+    //@Autowired
+    //DistrictRepository districtRepository;
 
-    @Autowired
-    DistrictRepository districtRepository;
+
+
+
+    private DistrictRepository districtRepository;
+
+    public PropertieServiceImpl (DistrictRepository districtRepository) {
+        this.districtRepository = districtRepository;
+    }
+
+
+    public PropertieServiceImpl(){
+    }
 
     private HashMap<String, Double> roomsSquareMetersOfProperties = new HashMap<>();
 
