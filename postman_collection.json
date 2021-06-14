@@ -1,0 +1,36 @@
+{
+	"info": {
+		"_postman_id": "bf9021bc-0cb7-4573-a7a4-b6ded0a94731",
+		"name": "Desafio Quality",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "US 0001-0004",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prop_name\": \"Casa da ste\",    \n    \"prop_district\": \"Centro\",\n    \"rooms\": \n        [       \n            {\n                \"room_name\": \"Sala\",\n                \"room_width\": 20.0,\n                \"room_length\": 23.0        \n            },\n            {\n                \"room_name\": \"Quarto\",\n                \"room_width\": 15.0,\n                \"room_length\": 12.0        \n            },\n            {\n                \"room_name\": \"Banheiro\",\n                \"room_width\": 8.0,            \n                \"room_length\": 12.0\n            },\n            {\n                \"room_name\": \"Cozinha\",\n                \"room_width\": 25.0,           \n                \"room_length\": 10.0\n            }\n        ]\n}\n\t\t\t\t\t",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/calculate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
