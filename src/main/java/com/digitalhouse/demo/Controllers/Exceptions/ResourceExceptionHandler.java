@@ -1,6 +1,5 @@
 package com.digitalhouse.demo.Controllers.Exceptions;
 
-import com.digitalhouse.demo.Services.Exceptions.EntityNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

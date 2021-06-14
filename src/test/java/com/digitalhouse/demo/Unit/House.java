@@ -1,10 +1,10 @@
-package com.digitalhouse.demo.Iunit;
+package com.digitalhouse.demo.Unit;
 
 import com.digitalhouse.demo.DTOs.DistrictDTO;
 import com.digitalhouse.demo.DTOs.PropertsDTO;
 import com.digitalhouse.demo.DTOs.RoomDTO;
 import com.digitalhouse.demo.Repository.DisctrictRepositoryImpl;
-import com.digitalhouse.demo.Services.Exceptions.EntityNotFoundException;
+import com.digitalhouse.demo.Controllers.Exceptions.EntityNotFoundException;
 import com.digitalhouse.demo.Services.HouseValuationServiceImpl;
 
 import org.junit.Assert;

@@ -1,4 +1,4 @@
-package com.digitalhouse.demo.Services.Exceptions;
+package com.digitalhouse.demo.Controllers.Exceptions;
 
 public class EntityNotFoundException extends  RuntimeException{
 

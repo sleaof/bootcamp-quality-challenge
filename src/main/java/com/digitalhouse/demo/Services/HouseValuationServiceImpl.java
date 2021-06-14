@@ -45,10 +45,6 @@ public class HouseValuationServiceImpl implements HouseValuationService {
     //Valor da propriedade
     public Double propertyValue(PropertsDTO propertsDTO) {
 
-//        Double valueDistrict = disctrictRepository.loadDB()
-//                .stream().filter(x -> x.getNameDistrict().contentEquals(propertsDTO.getProp_name()))
-//                .findFirst().get().getSquareMeterValue();
-
         Double valueDistrict = 0.0;
         int sizeDistrict = disctrictRepository.loadDB().size();
         for (int i = 0; i < sizeDistrict; i++) {

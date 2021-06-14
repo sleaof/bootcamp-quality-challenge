@@ -1,7 +1,7 @@
 package com.digitalhouse.demo.Repository;
 
 import com.digitalhouse.demo.DTOs.DistrictDTO;
-import com.digitalhouse.demo.Services.Exceptions.EntityNotFoundException;
+import com.digitalhouse.demo.Controllers.Exceptions.EntityNotFoundException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
