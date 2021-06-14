@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "7aa1b138-9ce8-4bea-8b3b-49f862b92b3c",
+		"name": "Bootcamp Challenge Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Calcula Area",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propName\":\"Casa\",\n    \"propDistrict\": \"Cotia\",\n    \"rooms\":[\n        {\n            \"roomName\":\"sala\",\n            \"roomWidth\": 13,\n            \"roomLength\": 5\n        },\n        {\n            \"roomName\":\"quarto\",\n            \"roomWidth\": 6,\n            \"roomLength\": 5\n        },\n        {\n            \"roomName\":\"escritorio\",\n            \"roomWidth\": 6,\n            \"roomLength\": 5\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:4200/calculate",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valida campos invalidos do Body",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propName\":\"casa\",\n    \"propDistrict\": \"Jardim Belval\",\n    \"rooms\":[\n        {\n            \"roomName\":\"sala\",\n            \"roomWidth\": 13,\n            \"roomLength\": 5\n        },\n        {\n            \"roomName\":\"quarto\",\n            \"roomWidth\": 6,\n            \"roomLength\": 5\n        },\n        {\n            \"roomName\":\"escritorio\",\n            \"roomWidth\": 6,\n            \"roomLength\": 5\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:4200/calculate",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error ao Buscar um distrito que nao pertence ao UF/SP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propName\":\"Casa\",\n    \"propDistrict\": \"Nova York\",\n    \"rooms\":[\n        {\n            \"roomName\":\"sala\",\n            \"roomWidth\": 13,\n            \"roomLength\": 5\n        },\n        {\n            \"roomName\":\"quarto\",\n            \"roomWidth\": 6,\n            \"roomLength\": 5\n        },\n        {\n            \"roomName\":\"escritorio\",\n            \"roomWidth\": 6,\n            \"roomLength\": 5\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:4200/calculate",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Publica de Districts do IBGE referente ao UF/SP",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://servicodados.ibge.gov.br/api/v1/localidades/estados/35/distritos",
+					"protocol": "https",
+					"host": [
+						"servicodados",
+						"ibge",
+						"gov",
+						"br"
+					],
+					"path": [
+						"api",
+						"v1",
+						"localidades",
+						"estados",
+						"35",
+						"distritos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
