@@ -24,4 +24,5 @@ class DistrictsApiTest {
             districtsApi.apiDistritos(URL_ERROR);
         });
     }
+
 }
