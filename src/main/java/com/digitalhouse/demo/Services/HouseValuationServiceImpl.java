@@ -5,7 +5,6 @@ import com.digitalhouse.demo.DTOs.HomeDTO;
 import com.digitalhouse.demo.DTOs.PropertsDTO;
 import com.digitalhouse.demo.Repository.DisctrictRepository;
 import com.digitalhouse.demo.Repository.DisctrictRepositoryImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -52,14 +51,15 @@ public class HouseValuationServiceImpl implements HouseValuationService {
 
         Double valueDistrict = 0.0;
         int sizeDistrict = disctrictRepository.loadDB().size();
-        for (int i = 0; i < sizeDistrict; i++){
-        Boolean findDistrict = disctrictRepository.loadDB().get(i)
-                .getNameDistrict().toLowerCase(Locale.ROOT)
-               .equals(propertsDTO.getProp_district()
-                        .toLowerCase(Locale.ROOT));
-            if (findDistrict == true){
-            valueDistrict = disctrictRepository.loadDB().get(i).getSquareMeterValue();
-        }if (valueDistrict == 0.0){
+        for (int i = 0; i < sizeDistrict; i++) {
+            Boolean findDistrict = disctrictRepository.loadDB().get(i)
+                    .getNameDistrict().toLowerCase(Locale.ROOT)
+                    .equals(propertsDTO.getProp_district()
+                            .toLowerCase(Locale.ROOT));
+            if (findDistrict == true) {
+                valueDistrict = disctrictRepository.loadDB().get(i).getSquareMeterValue();
+            }
+            if (valueDistrict == 0.0) {
                 System.out.println("erro");
             }
         }
@@ -70,7 +70,7 @@ public class HouseValuationServiceImpl implements HouseValuationService {
 
     //Maior comodo
     public Map.Entry<String, Double> biggestRoom(PropertsDTO propertsDTO) {
-       HashMap<String, Double> biggest = new HashMap<>();
+        HashMap<String, Double> biggest = new HashMap<>();
         return squareMetersPerRoom(propertsDTO).entrySet()
                 .stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
@@ -80,9 +80,10 @@ public class HouseValuationServiceImpl implements HouseValuationService {
     //Metros quadrados por comodo
     public HashMap<String, Double> squareMetersPerRoom(PropertsDTO propertsDTO) {
 
-        HashMap<String, Double> metersandRoom = new HashMap<>(); ;
+        HashMap<String, Double> metersandRoom = new HashMap<>();
+        ;
         for (int i = 0; i < propertsDTO.getRoom().size(); i++) {
-            String  cAux2 = propertsDTO.getRoom().get(i).getRoom_name();
+            String cAux2 = propertsDTO.getRoom().get(i).getRoom_name();
             Double aux2 = propertsDTO.getRoom().get(i).getRoom_length() * propertsDTO.getRoom().get(i).getRoom_width();
             metersandRoom.put(cAux2, aux2);
         }

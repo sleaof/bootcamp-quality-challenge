@@ -18,7 +18,6 @@ import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-
 import java.util.*;
 
 @SpringBootTest
@@ -33,20 +32,19 @@ public class House {
 
     HouseValuationServiceImpl h1 = new HouseValuationServiceImpl(disctrictRepository);
 
-    static PropertsDTO p1 ;
-
+    static PropertsDTO p1;
 
 
     @BeforeAll
-    static void init(){
+    static void init() {
         List<RoomDTO> rooms = new ArrayList<>();
-        RoomDTO r1 = new RoomDTO("Banheiro",4.0,2.0);
-        RoomDTO r2 = new RoomDTO("Cozinha",6.0,4.0);
-        RoomDTO r3 = new RoomDTO("Quarto",8.0,5.0);
+        RoomDTO r1 = new RoomDTO("Banheiro", 4.0, 2.0);
+        RoomDTO r2 = new RoomDTO("Cozinha", 6.0, 4.0);
+        RoomDTO r3 = new RoomDTO("Quarto", 8.0, 5.0);
         rooms.add(r1);
         rooms.add(r2);
         rooms.add(r3);
-        p1 = new PropertsDTO("Casa Guilherme","Osasco", rooms);
+        p1 = new PropertsDTO("Casa Guilherme", "Osasco", rooms);
 
     }
 
@@ -63,9 +61,9 @@ public class House {
     }
 
     @Test
-    void MetersPerRoom(){
+    void MetersPerRoom() {
         //arrange
-        HashMap<String,Double> sum = new HashMap<>();
+        HashMap<String, Double> sum = new HashMap<>();
         sum.put("Quarto", 40.0);
         sum.put("Cozinha", 24.0);
         sum.put("Banheiro", 8.0);
@@ -78,36 +76,39 @@ public class House {
     }
 
     @Test
-    void findByName(){
+    void findByName() {
 
         //arrange
-        String districtName= "Osasco";
+        String districtName = "Osasco";
 
         //act
         DistrictDTO district = disctrictRepository.findByName("Osasco");
 
         //assert
-        Assert.assertEquals(districtName,district.getNameDistrict());
+        Assert.assertEquals(districtName, district.getNameDistrict());
     }
 
     @Test
-    void findByNameException(){
+    void findByNameException() {
+
+        //arrange
+        String districtName = "Osasc";
 
         //assert
-        Assert.assertThrows(EntityNotFoundException.class,() ->
-            disctrictRepository.findByName("Osasc"));
+        Assert.assertThrows(EntityNotFoundException.class, () ->
+                disctrictRepository.findByName(districtName));
 
     }
 
     @Test
-    void biggestRoom(){
+    void biggestRoom() {
         //arrange
-        Map.Entry<String,Double> sum = new AbstractMap.SimpleEntry<String,Double>("Quarto",40.0);
+        Map.Entry<String, Double> sum = new AbstractMap.SimpleEntry<String, Double>("Quarto", 40.0);
 
         //act
         Map.Entry propertsDTO1 = h1.biggestRoom(p1);
 
         //assert
-        Assert.assertEquals(sum,propertsDTO1);
+        Assert.assertEquals(sum, propertsDTO1);
     }
 }

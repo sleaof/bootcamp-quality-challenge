@@ -33,5 +33,4 @@ public class HouseController  {
             return ResponseEntity.status(HttpStatus.CREATED).body(d1);
     }
 
-
 }
