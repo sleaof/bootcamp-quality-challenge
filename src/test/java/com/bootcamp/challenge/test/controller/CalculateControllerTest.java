@@ -30,7 +30,7 @@ class CalculateControllerTest {
     @Test
     public void calculateHomeDoesNotAcceptNullFields() throws Exception {
         Object randomObj = new Object() {
-            public final String propName = null;
+            public final String propName = "Coti@";
         };
         String json = objectMapper.writeValueAsString(randomObj);
 

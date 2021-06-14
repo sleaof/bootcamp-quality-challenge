@@ -1,7 +1,6 @@
 package com.bootcamp.challenge.test.service.impl;
 
 import com.bootcamp.challenge.test.exception.DistrictNotFoundException;
-import com.bootcamp.challenge.test.model.District;
 import com.bootcamp.challenge.test.model.House;
 import com.bootcamp.challenge.test.model.Room;
 import com.bootcamp.challenge.test.repository.impl.DistrictRepositoryImpl;
@@ -37,12 +36,6 @@ class CalculateServiceImplTest {
         Assert.assertThrows(DistrictNotFoundException.class, ()-> {
             service.calculateHouse(mockHouseDTOError());
         });
-    }
-
-    private List<District> districtList() {
-        List<District> districtList = new ArrayList<>();
-        districtList.add(new District(Long.valueOf(1), "Cotia"));
-        return districtList;
     }
 
     @Test

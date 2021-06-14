@@ -18,17 +18,18 @@ import java.util.List;
 
 public class DistrictsApi {
 
+    public static final String URL = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/35/distritos";
+
     public static List<District> listDistricts(){
         Gson gson = new Gson();
-        JsonArray convertedJson = new Gson().fromJson(apiDistritos(), JsonArray.class);
+        JsonArray convertedJson = new Gson().fromJson(apiDistritos(URL), JsonArray.class);
         Type collectionType = new TypeToken<Collection<District>>(){}.getType();
         List<District> districts = gson.fromJson(convertedJson, collectionType);
         return districts;
     }
 
-    public static String apiDistritos(){
+    public static String apiDistritos(String url){
         try {
-            java.lang.String url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/35/distritos";
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("GET");
