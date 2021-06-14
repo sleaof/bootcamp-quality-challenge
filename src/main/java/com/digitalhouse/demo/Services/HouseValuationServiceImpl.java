@@ -14,6 +14,7 @@ import java.util.*;
 @Service
 public class HouseValuationServiceImpl implements HouseValuationService {
 
+
     @Autowired
     public DisctrictRepository disctrictRepository;
 
@@ -31,7 +32,7 @@ public class HouseValuationServiceImpl implements HouseValuationService {
     //Total de metros quadrados
     public Double totalSquareMeters(PropertsDTO propertsDTO) {
 
-        Double cAux1 = 1.0;
+        Double cAux1 = 0.0;
         for (int i = 0; i < propertsDTO.getRoom().size(); i++) {
             cAux1 += propertsDTO.getRoom().get(i).getRoom_length() * propertsDTO.getRoom().get(i).getRoom_width();
         }
@@ -57,9 +58,7 @@ public class HouseValuationServiceImpl implements HouseValuationService {
             valueDistrict = disctrictRepository.loadDB().get(i).getSquareMeterValue();
         }if (valueDistrict == 0.0){
                 EntityNotFoundException e = new EntityNotFoundException("Voce retornou uma Destrito que não existe");
-
             }
-
         }
         Double propertyValue = totalSquareMeters(propertsDTO) * valueDistrict;
 

@@ -1,15 +1,22 @@
 package com.digitalhouse.demo.Iunit;
 
+import com.digitalhouse.demo.DTOs.DistrictDTO;
 import com.digitalhouse.demo.DTOs.PropertsDTO;
 import com.digitalhouse.demo.DTOs.RoomDTO;
 import com.digitalhouse.demo.Repository.DisctrictRepositoryImpl;
+import com.digitalhouse.demo.Services.Exceptions.EntityNotFoundException;
 import com.digitalhouse.demo.Services.HouseValuationServiceImpl;
+
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
+
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
+
 import org.springframework.boot.test.context.SpringBootTest;
+
 
 
 import java.util.*;
@@ -17,12 +24,18 @@ import java.util.*;
 @SpringBootTest
 public class House {
 
-    @Mock
-    public DisctrictRepositoryImpl disctrictRepository;
 
     @InjectMocks
+    public DisctrictRepositoryImpl disctrictRepository;
+
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
+
     HouseValuationServiceImpl h1 = new HouseValuationServiceImpl();
+
     static PropertsDTO p1 ;
+
+
 
     @BeforeAll
     static void init(){
@@ -34,11 +47,13 @@ public class House {
         rooms.add(r2);
         rooms.add(r3);
         p1 = new PropertsDTO("Casa Guilherme","Osasco", rooms);
+
     }
+
     @Test
     void totalSquareMeters() {
         //arrange
-        Double sum = 73.0;
+        Double sum = 72.0;
 
         //act
         Double propertsDTO = h1.totalSquareMeters(p1);
@@ -63,16 +78,25 @@ public class House {
     }
 
     @Test
-    void propertyValue(){
+    void findByName(){
 
         //arrange
-        Double propertValue= 200.0;
+        String districtName= "Osasco";
 
         //act
-        Double propertsDTO1 = h1.propertyValue(p1);
+        DistrictDTO district = disctrictRepository.findByName("Osasco");
 
         //assert
-        Assert.assertEquals(propertValue,propertsDTO1);
+        Assert.assertEquals(districtName,district.getNameDistrict());
+    }
+
+    @Test
+    void findByNameException(){
+
+        //assert
+        Assert.assertThrows(EntityNotFoundException.class,() ->
+            disctrictRepository.findByName("Osasc"));
+
     }
 
     @Test

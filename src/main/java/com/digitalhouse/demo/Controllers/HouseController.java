@@ -29,7 +29,7 @@ public class HouseController  {
     public ResponseEntity<?> House(@RequestBody @Valid PropertsDTO propertsDTO){
 
             HomeDTO d1 = houseValuation.home(propertsDTO);
-            disctrictRepository.findByName("Campi");
+            disctrictRepository.findByName("Campinas");
             return ResponseEntity.status(HttpStatus.CREATED).body(d1);
     }
 

@@ -21,7 +21,9 @@ public class DisctrictRepositoryImpl implements DisctrictRepository {
 
     public DistrictDTO findByName(String name) {
         List<DistrictDTO> districts = loadDB();
-        return districts.stream().filter(district -> district.getNameDistrict().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new EntityNotFoundException("Deu ruim"));
+        return districts.stream()
+                .filter(district -> district.getNameDistrict().equalsIgnoreCase(name))
+                .findFirst().orElseThrow(() -> new EntityNotFoundException("Deu ruim"));
     }
 
     @Override
