@@ -1,4 +1,4 @@
-package com.digitalhouse.demo.entities;
+package com.digitalhouse.demo.exceptions;
 
 import java.util.List;
 

@@ -68,35 +68,6 @@ public class PropertiesMethodTests {
 
     }
 
-   @Test
-    void testAnalyzePropertieTotalValueAssertEquals(){
-        //arrange
-        Double expected = 3300.00;
-
-        //act
-        Double propertieTotalValue = propertieService.propertiesValue(propertiesDTO);
-
-        //assert
-        Assert.assertEquals(expected, propertieTotalValue);
-
-    }
-    @Test
-    void testAnalyzePropertieTotalValueAssertNotEquals(){
-        //arrange
-        Double expected = 3200.00;
-        //DistrictDTO districtDTO = districtRepository.findByName("Parque São Domingos");
-
-        //act
-        Double propertieTotalValue = propertieService.propertiesValue(propertiesDTO);
-
-        //assert
-        Assert.assertEquals(expected, propertieTotalValue);
-
-    }
-
-
-
-
     @Test
     void testAnalyzeHasDistrictAseertEquals(){
         //arrange
@@ -110,17 +81,12 @@ public class PropertiesMethodTests {
         Assert.assertEquals(expected, districtHasRepo);
     }
 
-
-
    @Test
     void testAnalyzeHasDistrictAseertNotEquals(){
        String expected = "Parqse São Domingos";
 
         Assert.assertThrows(ResourceNotFoundException.class, () -> districtRepository.findByName(expected));
     }
-
-
-
 
     @Test
     void testAnalyzeBiggesRoomAssertEquals(){
@@ -132,7 +98,6 @@ public class PropertiesMethodTests {
 
         //assert
         Assert.assertEquals(roomExpected.getRoomName(), roomActual.getRoomName());
-
     }
 
     @Test
@@ -145,7 +110,6 @@ public class PropertiesMethodTests {
 
         //assert
         Assert.assertNotEquals(roomExpected.getRoomName(), roomActual.getRoomName());
-
     }
 
     @Test
@@ -173,6 +137,4 @@ public class PropertiesMethodTests {
         //assert
         Assert.assertNotEquals(squareMetersExpected,roomsSquareMeters.get(roomSquarMeterExpected));
     }
-
-
 }

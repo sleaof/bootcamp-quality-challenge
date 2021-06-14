@@ -13,12 +13,6 @@ import java.util.List;
 @Service
 public class PropertieServiceImpl implements PropertieService{
 
-    //@Autowired
-    //DistrictRepository districtRepository;
-
-
-
-
     private DistrictRepository districtRepository;
 
     public PropertieServiceImpl (DistrictRepository districtRepository) {

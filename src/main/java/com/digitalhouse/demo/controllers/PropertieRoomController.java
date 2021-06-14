@@ -2,7 +2,6 @@ package com.digitalhouse.demo.controllers;
 
 import com.digitalhouse.demo.dto.DistrictDTO;
 import com.digitalhouse.demo.dto.PropertieDTO;
-import com.digitalhouse.demo.repositories.DistrictRepository;
 import com.digitalhouse.demo.services.PropertieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,25 +18,12 @@ import java.util.List;
 @RestController
 public class PropertieRoomController {
 
-
     @Autowired
     PropertieService propertieService;
-
-    @Autowired
-    DistrictRepository districtRepository;
-
-    /*@PostMapping("/calculate")
-    public Double calculatePropertie(@RequestBody @Valid PropertieDTO propertieDTO){
-
-       return roomService.propertieSquareMeters(propertieDTO);
-    }
-
-     */
 
     @PostMapping("/calculates")
     public ResponseEntity<Object> getPropertieSquareMethod(@RequestBody @Valid PropertieDTO propertieDTO){
         return new ResponseEntity<>(propertieService.propertieSquareMeters(propertieDTO), HttpStatus.CREATED);
-
     }
 
     @PostMapping("/roomBiggest")

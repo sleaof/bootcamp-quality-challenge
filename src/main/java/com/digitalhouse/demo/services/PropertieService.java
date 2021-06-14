@@ -11,7 +11,6 @@ public interface PropertieService {
 
     HashMap<String, Double> getRoomsSquareMeters(PropertieDTO propertieDTO);
 
-    //Retorna o metro quadrado total da casa;
     public Double propertieSquareMeters(PropertieDTO dto);
 
     public Double propertiesValue(PropertieDTO dto);

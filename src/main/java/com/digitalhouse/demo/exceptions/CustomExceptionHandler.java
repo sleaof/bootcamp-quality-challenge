@@ -1,6 +1,5 @@
 package com.digitalhouse.demo.exceptions;
 
-import com.digitalhouse.demo.entities.ErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
