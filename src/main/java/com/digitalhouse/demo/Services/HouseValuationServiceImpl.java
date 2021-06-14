@@ -4,7 +4,7 @@ package com.digitalhouse.demo.Services;
 import com.digitalhouse.demo.DTOs.HomeDTO;
 import com.digitalhouse.demo.DTOs.PropertsDTO;
 import com.digitalhouse.demo.Repository.DisctrictRepository;
-import com.digitalhouse.demo.Services.Exceptions.EntityNotFoundException;
+import com.digitalhouse.demo.Repository.DisctrictRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +15,11 @@ import java.util.*;
 public class HouseValuationServiceImpl implements HouseValuationService {
 
 
-    @Autowired
     public DisctrictRepository disctrictRepository;
+
+    public HouseValuationServiceImpl(DisctrictRepositoryImpl disctrictRepository) {
+        this.disctrictRepository = disctrictRepository;
+    }
 
     @Override
     public HomeDTO home(PropertsDTO propertsDTO) {
@@ -57,7 +60,7 @@ public class HouseValuationServiceImpl implements HouseValuationService {
             if (findDistrict == true){
             valueDistrict = disctrictRepository.loadDB().get(i).getSquareMeterValue();
         }if (valueDistrict == 0.0){
-                EntityNotFoundException e = new EntityNotFoundException("Voce retornou uma Destrito que não existe");
+                System.out.println("erro");
             }
         }
         Double propertyValue = totalSquareMeters(propertsDTO) * valueDistrict;

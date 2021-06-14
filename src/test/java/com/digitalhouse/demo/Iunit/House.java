@@ -31,7 +31,7 @@ public class House {
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
-    HouseValuationServiceImpl h1 = new HouseValuationServiceImpl();
+    HouseValuationServiceImpl h1 = new HouseValuationServiceImpl(disctrictRepository);
 
     static PropertsDTO p1 ;
 
