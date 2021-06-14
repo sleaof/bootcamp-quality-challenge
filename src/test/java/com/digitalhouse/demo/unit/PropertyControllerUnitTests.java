@@ -79,5 +79,5 @@ class PropertyControllerUnitTests {
 		assertEquals(144.0, squareMetersPerRoom.get(room));
 
 	}
-
 }
+

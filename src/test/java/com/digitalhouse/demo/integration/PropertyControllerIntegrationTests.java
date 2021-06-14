@@ -1,26 +1,19 @@
 package com.digitalhouse.demo.integration;
 
-import com.digitalhouse.entities.Property;
-import com.digitalhouse.entities.Room;
+import com.digitalhouse.entities.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -42,12 +35,29 @@ public class PropertyControllerIntegrationTests {
     }
 
     @Test
-    public void givenGreetURIWithPost_whenMockMVC_thenVerifyResponse() throws Exception {
+    public void givenGreetURIWithPost_whenMockMVC_thenVerifyResponseIsOk() throws Exception {
         mockMvc.perform( MockMvcRequestBuilders
                 .post("/calculate")
                 .content(new ObjectMapper().writeValueAsString((new Property("Casa", "Centro", rooms))))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.squareMeters").value("986.0"))
+                .andExpect(jsonPath("$.price").value("147801.4"))
+                .andExpect(jsonPath("$.biggest.room_name").value("Sala"))
+                .andExpect(jsonPath("$.biggest.room_width").value("20.0"))
+                .andExpect(jsonPath("$.biggest.room_length").value("23.0"));
     }
+
+    @Test
+    public void givenGreetURIWithPost_whenMockMVC_thenVerifyResponseIsBadRequest() throws Exception {
+        mockMvc.perform( MockMvcRequestBuilders
+                .post("/calculate")
+                .content(new ObjectMapper().writeValueAsString((new Property("casa", "Centro", rooms))))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+
 }
